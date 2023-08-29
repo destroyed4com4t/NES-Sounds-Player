@@ -14,7 +14,7 @@ A huge library of NES sounds converted to Famitone.
 
 //#link "famitone2.s"
 void __fastcall__ famitone_update(void);
-//#link "music_gabalin_title_screen.s"
+//#link "music_player_title_screen.s"
 extern char player_music_data[];
 //#link "demosounds.s"
 extern char demo_sounds[];
@@ -23,11 +23,13 @@ int i;       //for loops
 char oam_id; //for sprites
 bool start_pressed = false; // Only allows one input from Start Button at a time.
 bool select_pressed = false; // Only allows one input from Select Button at a time.
+bool a_pressed = false; // Only allows one input from A Button at a time.
+bool b_pressed = false; // Only allows one input from B Button at a time.
 bool left_pressed = false; // Only allows one input from Select Button at a time.
 bool right_pressed = false; // Only allows one input from Select Button at a time.
 int sfx_timer; //pauses music to play sound
 char title_select = 0;
-char selected_song = 0;
+char selected_sfx = 0;
 
 
 const char ATTRIBUTE_TABLE_1[0x40] = {
@@ -152,7 +154,7 @@ void main(void)
   // set music callback function for NMI
   nmi_set_callback(famitone_update);
   // play music
-  music_play(selected_song);
+  //music_play(selected_song);
   //enable rendering
   ppu_on_all();
   // repeat forever
@@ -164,8 +166,15 @@ void main(void)
     set_vram_update(updbuf);
     // play sounds when buttons pushed
     if (pad & PAD_A) 
-    	{
-      	// sfx_play(0,0); // commenting out other sfx for now
+       {
+       if (!a_pressed)
+          {
+          sfx_play(selected_sfx, 0);
+          }    	
+       else
+          {
+          a_pressed=false;
+          }
     	}
     if (pad & PAD_B) 
     	{
@@ -180,17 +189,15 @@ void main(void)
       	if (!left_pressed)
             {
             left_pressed=true;
-            if (selected_song > 0)
+            if (selected_sfx > 0)
                {
-               selected_song--;
-               sfx_play(3,0);
-               music_play(selected_song);
+               selected_sfx--;
+               sfx_play(selected_sfx, 0);
                }   
             else
                {
-               selected_song = 6;
-               sfx_play(3,0);
-               music_play(selected_song);
+               selected_sfx = 6;
+               sfx_play(selected_sfx, 0);
                }
             }
     	}
@@ -203,17 +210,16 @@ void main(void)
       	if (!right_pressed)
             {
             right_pressed=true;
-            if (selected_song < 6)
+            if (selected_sfx < 6)
                {
-               selected_song++;
-               sfx_play(3,0);
-               music_play(selected_song);
+               selected_sfx++;
+               sfx_play(selected_sfx , 0);
                } 
             else
                {
-               selected_song = 0;
+               selected_sfx = 0;
                sfx_play(3,0);
-               music_play(selected_song);
+               sfx_play(selected_sfx, 0);
                }
             }
     	}
@@ -246,10 +252,7 @@ void main(void)
     	{
         if (!start_pressed)
     	    {
-      	    sfx_timer=3500; // Timer To Pause Music
-            // music_pause(1); //Pauses Music For Gabalin Start Noise
-            // sfx_play(0,0);  // Gabalin Start Button Noise
-    	    start_pressed = true;
+      	    sfx_play(selected_sfx, 0);
             }
     	}
     else
@@ -275,39 +278,39 @@ void main(void)
         //vrambuf_put(NTADR_A(11, 19), TITLE_POINTER[0], 1);
         //vrambuf_put(NTADR_A(11, 21), TITLE_POINTER[1], 1);
         }             
-   if (selected_song == 0)
+   if (selected_sfx == 0)
         {
         vrambuf_put(NTADR_A(04, 24), "     1. TITLE THEME     ", 24);
         }
-   if (selected_song == 1)
+   if (selected_sfx == 1)
         {
         vrambuf_put(NTADR_A(04, 24), "  2. IN THE TOWN THEME  ", 24);
         }
-   if (selected_song == 2)
+   if (selected_sfx == 2)
         {
         vrambuf_put(NTADR_A(04, 24), "  3. CONVERSATION THEME ", 24);
         }  
-   if (selected_song == 3)
+   if (selected_sfx == 3)
         {
         vrambuf_put(NTADR_A(04, 24), "    4. DUNGEON THEME    ", 24);
         }  
-   if (selected_song == 4)
+   if (selected_sfx == 4)
         {
         vrambuf_put(NTADR_A(04, 24), "    5. COMBAT THEME     ", 24);
         } 
-   if (selected_song == 5)
+   if (selected_sfx == 5)
         {
         vrambuf_put(NTADR_A(04, 24), "   6. GAME OVER THEME   ", 24);
         } 
-   if (selected_song == 6)
+   if (selected_sfx == 6)
         {
         vrambuf_put(NTADR_A(04, 24), "    7. ENDING THEME     ", 24);
         }   
-   if (selected_song == 7)
+   if (selected_sfx == 7)
         {
         vrambuf_put(NTADR_A(04, 24), "        TRACK 8         ", 24);
         }   
-   if (selected_song == 8)
+   if (selected_sfx == 8)
         {
         vrambuf_put(NTADR_A(04, 24), "        TRACK 9         ", 24);
         }   
