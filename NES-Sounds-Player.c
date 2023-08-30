@@ -154,7 +154,7 @@ void main(void)
   // set music callback function for NMI
   nmi_set_callback(famitone_update);
   // play music
-  //music_play(selected_song);
+  sfx_play(selected_sfx, 0);
   //enable rendering
   ppu_on_all();
   // repeat forever
@@ -196,7 +196,7 @@ void main(void)
                }   
             else
                {
-               selected_sfx = 6;
+               selected_sfx = 54;
                sfx_play(selected_sfx, 0);
                }
             }
@@ -210,7 +210,7 @@ void main(void)
       	if (!right_pressed)
             {
             right_pressed=true;
-            if (selected_sfx < 6)
+            if (selected_sfx < 54)
                {
                selected_sfx++;
                sfx_play(selected_sfx , 0);
@@ -280,39 +280,223 @@ void main(void)
         }             
    if (selected_sfx == 0)
         {
-        vrambuf_put(NTADR_A(04, 24), "     1. TITLE THEME     ", 24);
+        vrambuf_put(NTADR_A(12, 24), "START  1", 8);
         }
    if (selected_sfx == 1)
         {
-        vrambuf_put(NTADR_A(04, 24), "  2. IN THE TOWN THEME  ", 24);
+        vrambuf_put(NTADR_A(12, 24), "START  2", 8);
         }
    if (selected_sfx == 2)
         {
-        vrambuf_put(NTADR_A(04, 24), "  3. CONVERSATION THEME ", 24);
+        vrambuf_put(NTADR_A(12, 24), "START  3", 8);
         }  
    if (selected_sfx == 3)
         {
-        vrambuf_put(NTADR_A(04, 24), "    4. DUNGEON THEME    ", 24);
+        vrambuf_put(NTADR_A(12, 24), "START  4", 8);
         }  
    if (selected_sfx == 4)
         {
-        vrambuf_put(NTADR_A(04, 24), "    5. COMBAT THEME     ", 24);
+        vrambuf_put(NTADR_A(12, 24), " COIN 1 ", 8);
         } 
    if (selected_sfx == 5)
         {
-        vrambuf_put(NTADR_A(04, 24), "   6. GAME OVER THEME   ", 24);
+        vrambuf_put(NTADR_A(12, 24), " COIN 2 ", 8);
         } 
    if (selected_sfx == 6)
         {
-        vrambuf_put(NTADR_A(04, 24), "    7. ENDING THEME     ", 24);
+        vrambuf_put(NTADR_A(12, 24), " COIN 3 ", 8);
         }   
    if (selected_sfx == 7)
         {
-        vrambuf_put(NTADR_A(04, 24), "        TRACK 8         ", 24);
+        vrambuf_put(NTADR_A(12, 24), " ITEM 1 ", 8);
         }   
    if (selected_sfx == 8)
         {
-        vrambuf_put(NTADR_A(04, 24), "        TRACK 9         ", 24);
-        }   
+        vrambuf_put(NTADR_A(12, 24), " ITEM 2 ", 8);
+        } 
+   if (selected_sfx == 9)
+        {
+        vrambuf_put(NTADR_A(12, 24), " ITEM 3 ", 8);
+        } 
+   if (selected_sfx == 10)
+        {
+        vrambuf_put(NTADR_A(12, 24), " ITEM 4 ", 8);
+        } 
+   if (selected_sfx == 11)
+        {
+        vrambuf_put(NTADR_A(12, 24), " ITEM 5 ", 8);
+        }     
+   if (selected_sfx == 12)
+        {
+        vrambuf_put(NTADR_A(12, 24), " ITEM 6 ", 8);
+        } 
+   if (selected_sfx == 13)
+        {
+        vrambuf_put(NTADR_A(12, 24), " ITEM 7 ", 8);
+        }     
+   if (selected_sfx == 14)
+        {
+        vrambuf_put(NTADR_A(12, 24), " ITEM 8 ", 8);
+        } 
+   if (selected_sfx == 15)
+        {
+        vrambuf_put(NTADR_A(12, 24), " ITEM 9 ", 8);
+        } 
+   if (selected_sfx == 16)
+        {
+        vrambuf_put(NTADR_A(12, 24), " MENU 1 ", 8);
+        }     
+   if (selected_sfx == 17)
+        {
+        vrambuf_put(NTADR_A(12, 24), " MENU 2 ", 8);
+        }     
+   if (selected_sfx == 18)
+        {
+        vrambuf_put(NTADR_A(12, 24), " MENU 3 ", 8);
+        }         
+   if (selected_sfx == 19)
+        {
+        vrambuf_put(NTADR_A(12, 24), " MENU 4 ", 8);
+        } 
+   if (selected_sfx == 20)
+        {
+        vrambuf_put(NTADR_A(12, 24), " MENU 5 ", 8);
+        } 
+   if (selected_sfx == 21)
+        {
+        vrambuf_put(NTADR_A(12, 24), " MENU 6 ", 8);
+        } 
+   if (selected_sfx == 22)
+        {
+        vrambuf_put(NTADR_A(12, 24), " MENU 7 ", 8);
+        } 
+   if (selected_sfx == 23)
+        {
+        vrambuf_put(NTADR_A(12, 24), " MENU 8 ", 8);
+        }    
+   if (selected_sfx == 24)
+        {
+        vrambuf_put(NTADR_A(12, 24), "RESPAWN1", 8);
+        }    
+   if (selected_sfx == 25)
+        {
+        vrambuf_put(NTADR_A(12, 24), "RESPAWN2", 8);
+        }    
+   if (selected_sfx == 26)
+        {
+        vrambuf_put(NTADR_A(12, 24), "RESPAWN3", 8);
+        }        
+   if (selected_sfx == 27)
+        {
+        vrambuf_put(NTADR_A(12, 24), "RESPAWN4", 8);
+        }  
+   if (selected_sfx == 28)
+        {
+        vrambuf_put(NTADR_A(12, 24), " JUMP 1 ", 8);
+        } 
+   if (selected_sfx == 29)
+        {
+        vrambuf_put(NTADR_A(12, 24), " JUMP 2 ", 8);
+        }     
+   if (selected_sfx == 30)
+        {
+        vrambuf_put(NTADR_A(12, 24), " JUMP 3 ", 8);
+        } 
+   if (selected_sfx == 31)
+        {
+        vrambuf_put(NTADR_A(12, 24), " FALL 1 ", 8);
+        } 
+   if (selected_sfx == 32)
+        {
+        vrambuf_put(NTADR_A(12, 24), " FALL 2 ", 8);
+        } 
+   if (selected_sfx == 33)
+        {
+        vrambuf_put(NTADR_A(12, 24), "BRAKES 1", 8);
+        }     
+   if (selected_sfx == 34)
+        {
+        vrambuf_put(NTADR_A(12, 24), "BRAKES 2", 8);
+        } 
+   if (selected_sfx == 35)
+        {
+        vrambuf_put(NTADR_A(12, 24), " STAIRS ", 8);
+        } 
+   if (selected_sfx == 36)
+        {
+        vrambuf_put(NTADR_A(12, 24), " HIT  1 ", 8);
+        } 
+   if (selected_sfx == 37)
+        {
+        vrambuf_put(NTADR_A(12, 24), " HIT  2 ", 8);
+        } 
+   if (selected_sfx == 38)
+        {
+        vrambuf_put(NTADR_A(12, 24), " HIT  3 ", 8);
+        } 
+   if (selected_sfx == 39)
+        {
+        vrambuf_put(NTADR_A(12, 24), " HIT  4 ", 8);
+        } 
+   if (selected_sfx == 40)
+        {
+        vrambuf_put(NTADR_A(12, 24), " HIT  5 ", 8);
+        } 
+   if (selected_sfx == 41)
+        {
+        vrambuf_put(NTADR_A(12, 24), " HIT  6 ", 8);
+        } 
+   if (selected_sfx == 42)
+        {
+        vrambuf_put(NTADR_A(12, 24), " HIT  7 ", 8);
+        }     
+   if (selected_sfx == 43)
+        {
+        vrambuf_put(NTADR_A(12, 24), " HIT  8 ", 8);
+        } 
+   if (selected_sfx == 44)
+        {
+        vrambuf_put(NTADR_A(12, 24), " HIT  9 ", 8);
+        }    
+   if (selected_sfx == 45)
+        {
+        vrambuf_put(NTADR_A(12, 24), "MAGIC 1 ", 8);
+        }  
+   if (selected_sfx == 46)
+        {
+        vrambuf_put(NTADR_A(12, 24), "MAGIC 2 ", 8);
+        }  
+   if (selected_sfx == 47)
+        {
+        vrambuf_put(NTADR_A(12, 24), "MAGIC 3 ", 8);
+        }  
+   if (selected_sfx == 48)
+        {
+        vrambuf_put(NTADR_A(12, 24), " BOMB 1 ", 8);
+        } 
+   if (selected_sfx == 49)
+        {
+        vrambuf_put(NTADR_A(12, 24), " BOMB 2 ", 8);
+        } 
+   if (selected_sfx == 50)
+        {
+        vrambuf_put(NTADR_A(12, 24), " BOMB 3 ", 8);
+        }  
+   if (selected_sfx == 51)
+        {
+        vrambuf_put(NTADR_A(12, 24), "DEATH  1", 8);
+        } 
+   if (selected_sfx == 52)
+        {
+        vrambuf_put(NTADR_A(12, 24), "DEATH  2", 8);
+        }     
+   if (selected_sfx == 53)
+        {
+        vrambuf_put(NTADR_A(12, 24), " WATER  ", 8);
+        } 
+   if (selected_sfx == 54)
+        {
+        vrambuf_put(NTADR_A(12, 24), "  FIRE  ", 8);
+        }     
    }
 }
