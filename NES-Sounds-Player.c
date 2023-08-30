@@ -170,35 +170,34 @@ void main(void)
        {
        if (!a_pressed)
           {
-          a_pressed=true;
+          a_pressed = true;
           sfx_play(selected_sfx, 0);
           }    	
-       else
-          {
-          a_pressed=false;
-          }
-    	}
+       }
+    else
+       {
+       a_pressed=false;
+       }
     if (pad & PAD_B) 
-    	{
-        if (!b_pressed)
-           {
-           b_pressed=true;
-           if (bgm)
-              {
-              music_stop();  
-              }
-           else
-              {
-              music_play(0); 
-              } 
-           bgm = !bgm;
-           }    	
-        else
-           {
-           b_pressed=false;
-           }      	
-      
-    	}
+       {
+       if (!b_pressed)
+          {
+          b_pressed=true;
+          if (bgm)
+             {
+             music_stop();  
+             }
+          else
+             {
+             music_play(0); 
+             } 
+          bgm = !bgm;
+          }    	      
+       }
+    else
+       {
+       b_pressed=false;
+       }          
     if (pad & PAD_DOWN) 
     	{
       	//sfx_play(2,2); // commenting out other sfx for now
