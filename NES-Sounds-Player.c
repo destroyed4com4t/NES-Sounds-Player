@@ -154,7 +154,7 @@ void main(void)
   // set music callback function for NMI
   nmi_set_callback(famitone_update);
   // play music
-  sfx_play(selected_sfx, 0);
+  music_play(0);
   //enable rendering
   ppu_on_all();
   // repeat forever
