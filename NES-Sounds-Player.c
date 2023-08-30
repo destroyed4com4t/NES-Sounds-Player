@@ -27,6 +27,7 @@ bool a_pressed = false; // Only allows one input from A Button at a time.
 bool b_pressed = false; // Only allows one input from B Button at a time.
 bool left_pressed = false; // Only allows one input from Select Button at a time.
 bool right_pressed = false; // Only allows one input from Select Button at a time.
+bool bgm = true; // Turn music On And Off
 int sfx_timer; //pauses music to play sound
 char title_select = 0;
 char selected_sfx = 0;
@@ -169,6 +170,7 @@ void main(void)
        {
        if (!a_pressed)
           {
+          a_pressed=true;
           sfx_play(selected_sfx, 0);
           }    	
        else
@@ -178,7 +180,24 @@ void main(void)
     	}
     if (pad & PAD_B) 
     	{
-      	// sfx_play(1,1); // commenting out other sfx for now
+        if (!b_pressed)
+           {
+           b_pressed=true;
+           if (bgm)
+              {
+              music_stop();  
+              }
+           else
+              {
+              music_play(0); 
+              } 
+           bgm = !bgm;
+           }    	
+        else
+           {
+           b_pressed=false;
+           }      	
+      
     	}
     if (pad & PAD_DOWN) 
     	{
@@ -252,6 +271,7 @@ void main(void)
     	{
         if (!start_pressed)
     	    {
+            start_pressed=true;
       	    sfx_play(selected_sfx, 0);
             }
     	}
